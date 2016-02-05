@@ -3,8 +3,6 @@ package cc.sferalabs.sfera.drivers.twitter;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
-import org.json.simple.parser.ParseException;
-
 import com.twitter.hbc.ClientBuilder;
 import com.twitter.hbc.core.Client;
 import com.twitter.hbc.core.Constants;
@@ -75,7 +73,7 @@ public class Twitter extends Driver {
 		try {
 			log.debug("Message: {}", msg);
 			Bus.post(new UserStreamMessageEvent(this, msg));
-		} catch (ParseException e) {
+		} catch (Exception e) {
 			log.error("Message parsing error", e);
 		}
 

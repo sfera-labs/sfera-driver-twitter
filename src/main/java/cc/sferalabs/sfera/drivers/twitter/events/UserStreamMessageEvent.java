@@ -3,9 +3,7 @@
  */
 package cc.sferalabs.sfera.drivers.twitter.events;
 
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
+import org.json.JSONObject;
 
 import cc.sferalabs.sfera.events.BaseEvent;
 import cc.sferalabs.sfera.events.Node;
@@ -19,18 +17,16 @@ import cc.sferalabs.sfera.events.Node;
  */
 public class UserStreamMessageEvent extends BaseEvent implements TwitterEvent {
 
-	private static final JSONParser parser = new JSONParser();
 	private final JSONObject value;
 
 	/**
 	 * 
 	 * @param source
 	 * @param data
-	 * @throws ParseException
 	 */
-	public UserStreamMessageEvent(Node source, String data) throws ParseException {
+	public UserStreamMessageEvent(Node source, String data) {
 		super(source, "stream.user");
-		value = (JSONObject) parser.parse(data);
+		value = new JSONObject(data);
 	}
 
 	@Override
